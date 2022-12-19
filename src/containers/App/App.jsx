@@ -1,9 +1,11 @@
-import cn from 'classnames'
+
 import './App.module.css';
 import style from './App.module.css'
+import {getApiResource} from "../../utils/network";
+
 const App = () =>{
   return (
-      <h1 className={cn(style.header, style.text)}>Hello</h1>
+      <h1 className={style.header}>Hello</h1>
   )
 }
 
