@@ -1,11 +1,14 @@
 
 import './App.module.css';
-import style from './App.module.css'
-import {getApiResource} from "../../utils/network";
+
+import PeoplePage from "../PeoplePage/PeoplePage";
+
 
 const App = () =>{
   return (
-      <h1 className={style.header}>Hello</h1>
+      <>
+      <PeoplePage/>
+      </>
   )
 }
 
