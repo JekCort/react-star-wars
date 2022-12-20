@@ -1,4 +1,11 @@
-import {GUIDE_IMG_EXTENSION, HTTPS, SWAPI_PEOPLE, SWAPI_ROOT, URL_IMG_PERSON} from "../constants/api";
+import {GUIDE_IMG_EXTENSION, HTTPS, SWAPI_PARAM_PAGE, SWAPI_PEOPLE, SWAPI_ROOT, URL_IMG_PERSON} from "../constants/api";
+
+export const getPeoplePageId = url =>{
+    const pos = url.lastIndexOf(SWAPI_PARAM_PAGE);
+    const id = url.slice(pos + SWAPI_PARAM_PAGE.length, url.length)
+    console.log(id);
+    return Number(id)
+}
 
 const getId = (url, category) => {
     const id = url
