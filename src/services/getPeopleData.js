@@ -3,7 +3,6 @@ import {GUIDE_IMG_EXTENSION, HTTPS, SWAPI_PARAM_PAGE, SWAPI_PEOPLE, SWAPI_ROOT, 
 export const getPeoplePageId = url =>{
     const pos = url.lastIndexOf(SWAPI_PARAM_PAGE);
     const id = url.slice(pos + SWAPI_PARAM_PAGE.length, url.length)
-    console.log(id);
     return Number(id)
 }
 
