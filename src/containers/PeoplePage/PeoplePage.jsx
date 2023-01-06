@@ -19,7 +19,7 @@ const PeoplePage = ({setErrorApi}) => {
     const query = useQueryParams();
     const queryPage = query.get('page');
 
-    console.log(prevPage, nextPage)
+
     const getResource = async (url) => {
         const res = await getApiResource(url);
         if (res) {
@@ -47,7 +47,7 @@ const PeoplePage = ({setErrorApi}) => {
 
     useEffect(() => {
         getResource(API_PEOPLE + queryPage)
-    }, []);
+    }, [getResource, queryPage]);
 
     return (
         <>

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {Suspense, useEffect, useState} from 'react';
 import PropTypes from "prop-types";
 import {getApiResource} from "../../utils/network";
 import {API_PERSON} from "../../constants/api";
@@ -9,11 +9,17 @@ import PersonInfo from "../../components/PersonPage/PersonInfo/PersonInfo";
 import PersonPhoto from "../../components/PersonPage/PersonPhoto/PersonPhoto";
 import style from './PersonPage.module.css'
 import PersonLinkBack from "../../components/PersonLinkBack/PersonLinkBack";
+import UiLoading from "../../components/UI/UiLoading/UiLoading";
+
+// import PersonFilms from "../../components/PersonPage/PersonFilms/PersonFilms";
+
+const PersonFilms = React.lazy(() => import('../../components/PersonPage/PersonFilms/PersonFilms'))
 
 const PersonPage = ({setErrorApi}) => {
     const [personInfo, setpersonInfo] = useState(null)
     const [personName, setpersonName] = useState(null)
     const [personPhoto, setpersonPhoto] = useState(null)
+    const [personFilms, setpersonFilms] = useState(null)
     const {id} = useParams();
 
     useEffect(() => {
@@ -33,7 +39,7 @@ const PersonPage = ({setErrorApi}) => {
                 setpersonName(res.name);
                 setpersonPhoto(getPeopleImg(id))
 
-                // res.films
+                res.films.length && setpersonFilms(res.films)
 
                 setErrorApi(false);
             } else {
@@ -53,6 +59,12 @@ const PersonPage = ({setErrorApi}) => {
                     <PersonPhoto personPhoto={personPhoto} personName={personName}/>
 
                     {personInfo && <PersonInfo personInfo={personInfo}/>}
+
+                    {personFilms && (
+                        <Suspense fallback={<UiLoading/>}>
+                            <PersonFilms personFilms={personFilms}/>
+                        </Suspense>
+                    )}
                 </div>
 
             </div>

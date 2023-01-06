@@ -2,6 +2,7 @@ import React from 'react';
 import style from './PersonLinkBack.module.css'
 import {useNavigate} from "react-router";
 import iconBack from './img/back.svg'
+import {Link} from "react-router-dom";
 const PersonLinkBack = () => {
     const navigate = useNavigate()
     const handleGoBack = e => {
@@ -12,10 +13,10 @@ const PersonLinkBack = () => {
     return (
 
         <>
-            <a onClick={handleGoBack} href='#' className={style.link}>
+            <Link onClick={handleGoBack} className={style.link}>
                 <img className={style.link__img} src={iconBack} alt="Go back icon"/>
                 <span>Go back</span>
-            </a>
+            </Link>
         </>
     );
 };
