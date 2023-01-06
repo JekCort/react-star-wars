@@ -8,6 +8,7 @@ import NotFoundPage from "../NotFoundPage/NotFoundPage";
 
 import style from './App.module.css'
 import PersonPage from "../PersonPage/PersonPage";
+import FavoritesPage from "../FavoritesPage/FavoritesPage";
 
 const App = () => {
     return (
@@ -16,10 +17,11 @@ const App = () => {
                 <div className={style.wrapper}>
                     <Header/>
                     <Routes>
-                        <Route path="/" exact='true' element={<HomePage/>}/>
-                        <Route path="/people" exact='true' element={<PeoplePage/>}/>
-                        <Route path="/people/:id" exact='true' element={<PersonPage/>}/>
-                        <Route path="/not-found" exact='true' element={<NotFoundPage/>}/>
+                        <Route path="/"element={<HomePage/>}/>
+                        <Route path="/people"element={<PeoplePage/>}/>
+                        <Route path="/people/:id" element={<PersonPage/>}/>
+                        <Route path="/favorites" element={<FavoritesPage/>}/>
+                        <Route path="/not-found" element={<NotFoundPage/>}/>
                         <Route path="*" exact='true' element={<NotFoundPage/>}/>
                     </Routes>
                 </div>

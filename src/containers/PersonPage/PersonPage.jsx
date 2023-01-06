@@ -10,21 +10,31 @@ import PersonPhoto from "../../components/PersonPage/PersonPhoto/PersonPhoto";
 import style from './PersonPage.module.css'
 import PersonLinkBack from "../../components/PersonLinkBack/PersonLinkBack";
 import UiLoading from "../../components/UI/UiLoading/UiLoading";
+import {useSelector} from "react-redux";
 
 // import PersonFilms from "../../components/PersonPage/PersonFilms/PersonFilms";
 
 const PersonFilms = React.lazy(() => import('../../components/PersonPage/PersonFilms/PersonFilms'))
 
 const PersonPage = ({setErrorApi}) => {
+    const [personId, setPersonId] = useState(null)
     const [personInfo, setpersonInfo] = useState(null)
     const [personName, setpersonName] = useState(null)
     const [personPhoto, setpersonPhoto] = useState(null)
     const [personFilms, setpersonFilms] = useState(null)
+    const [personFavorite, setPersonFavorite] = useState(false)
     const {id} = useParams();
+
+    const storeData = useSelector(state => state.favoriteReducer)
 
     useEffect(() => {
         (async () => {
             const res = await getApiResource(`${API_PERSON}/${id}/`);
+
+            storeData[id] ? setPersonFavorite(true) : setPersonFavorite(false)
+
+            setPersonId(id)
+
             if (res) {
                 setpersonInfo([
                     {title: 'Height', data: res.height},
@@ -56,13 +66,21 @@ const PersonPage = ({setErrorApi}) => {
                 <span className={style.person__name}>{personName}</span>
 
                 <div className={style.container}>
-                    <PersonPhoto personPhoto={personPhoto} personName={personName}/>
+                    <PersonPhoto
+                        personId={personId}
+                        personPhoto={personPhoto}
+                        personName={personName}
+                        personFavorite={personFavorite}
+                        setPersonFavorite={setPersonFavorite}
+                    />
 
                     {personInfo && <PersonInfo personInfo={personInfo}/>}
 
                     {personFilms && (
                         <Suspense fallback={<UiLoading/>}>
-                            <PersonFilms personFilms={personFilms}/>
+                            <PersonFilms
+                                personFilms={personFilms}
+                            />
                         </Suspense>
                     )}
                 </div>
