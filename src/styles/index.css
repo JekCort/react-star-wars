@@ -29,6 +29,14 @@
     --border-radius-small: 3px;
     --border-radius-medium: 5px;
 
+    --box-shadow-white: 0 16px 24px 2px rgba(255, 255, 255, 0.02),
+    0 6px 30px 5px rgba(255, 255, 255, 0.04),
+    0 8px 10px -5px rgba(255, 255, 255, 0.1);
+
+    --box-shadow-black: 0 16px 24px 2px rgba(0, 0, 0, 0.02),
+    0 6px 30px 5px rgba(0, 0, 0, 0.04),
+    0 8px 10px -5px rgba(0, 0, 0, 0.1);
+
     --text-shadow-yellow: 0 0 2px var(--color-white), 0 0 40px var(--color-yellow);
     --text-shadow-blue: 0 0 2px var(--color-white), 0 0 40px var(--color-blue);
 
@@ -50,11 +58,12 @@ body {
     background-attachment: fixed;
 }
 
-img{
+img {
     display: block;
 }
+
 .header__text {
-  line-height: 1.7;
+    line-height: 1.7;
     font-size: var(--font-size-header);
     text-shadow: 0 0 2px var(--color-black);
     color: var(--theme-default-header);
