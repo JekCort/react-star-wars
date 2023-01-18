@@ -40,8 +40,17 @@
     --text-shadow-yellow: 0 0 2px var(--color-white), 0 0 40px var(--color-yellow);
     --text-shadow-blue: 0 0 2px var(--color-white), 0 0 40px var(--color-blue);
 
-    --theme-default-header: #cccc46;
-    --theme-default-bgimage: url(../assetcs/images/bg.jpg);
+
+    /* THEMES */
+    --theme-light-header: #dfe2df;
+    --theme-dark-header: #ca6c6f;
+    --theme-neutral-header: #cccc46;
+    --theme-default-header: var(--theme-neutral-header);
+
+    --theme-light-bgimage: linear-gradient(to right bottom, #051937, #162454, #312d70, #533389, #7a359f);
+    --theme-dark-bgimage: linear-gradient(to right bottom, #000000, #160b11, #20141e, #281b2e, #2b2440);
+    --theme-neutral-bgimage: url(../assetcs/images/bg.jpg);
+    --theme-default-bgimage: var(--theme-neutral-bgimage);
 }
 
 body {
