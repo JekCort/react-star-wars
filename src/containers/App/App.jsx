@@ -10,6 +10,7 @@ import style from './App.module.css'
 import PersonPage from "../PersonPage/PersonPage";
 import FavoritesPage from "../FavoritesPage/FavoritesPage";
 import SearchPage from "../SearchPage/SearchPage";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 const App = () => {
     return (
@@ -23,6 +24,7 @@ const App = () => {
                         <Route path="/people/:id" element={<PersonPage/>}/>
                         <Route path="/favorites" element={<FavoritesPage/>}/>
                         <Route path="/search" element={<SearchPage/>}/>
+                        <Route path="/fail" element={<ErrorMessage/>}/>
                         <Route path="/not-found" element={<NotFoundPage/>}/>
                         <Route path="*" exact='true' element={<NotFoundPage/>}/>
                     </Routes>

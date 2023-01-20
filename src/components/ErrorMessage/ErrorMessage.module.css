@@ -6,9 +6,17 @@
     font-size: var(--font-size-header);
     color: var(--color-yellow);
     text-align: center;
-    text-shadow:0 0 2px var(--color-white);
+    text-shadow: 0 0 2px var(--color-white);
 
     -webkit-text-stroke-color: var(--color-yellow);
     -webkit-text-stroke-width: .5px;
     -webkit-text-fill-color: transparent;
+}
+
+.video {
+    display: block;
+    margin: auto;
+    margin-top: var(--spacing-large);
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--box-shadow-white);
 }
