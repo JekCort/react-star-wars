@@ -3,6 +3,7 @@ import loaderBlack from './img/loader-black.svg'
 import loaderWhite from './img/loader-white.svg'
 import loaderBlue from './img/loader-blue.svg'
 import style from './UiLoading.module.css'
+import '../index.css'
 import PropTypes from "prop-types";
 import cn from "classnames";
 

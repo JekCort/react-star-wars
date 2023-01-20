@@ -6,15 +6,14 @@ import {withErrorApi} from "../../hoc-helpers/withErrorApi";
 import PropTypes from "prop-types";
 import {getPeopleId, getPeopleImg} from "../../services/getPeopleData";
 import SearchPageInfo from "../../components/SearchPage/SearchPageInfo/SearchPageInfo";
-import {value} from "lodash/seq";
 import {debounce} from "lodash";
+import UiInput from "../../components/UI/UiInput/UiInput";
 
 const SearchPage = ({setErrorApi}) => {
     const [inputSearchValue, setInputSearchValue] = useState('')
     const [people, setPeople] = useState([])
 
     const getResponse = async param => {
-        console.log(param)
         const res = await getApiResource(API_SEARCH + param)
 
         if (res) {
@@ -43,8 +42,7 @@ const SearchPage = ({setErrorApi}) => {
     )
 
 
-    const handleInputChange = (event) => {
-        const value = event.target.value
+    const handleInputChange = (value) => {
 
         setInputSearchValue(value)
         debounceGetResponse(value)
@@ -52,11 +50,12 @@ const SearchPage = ({setErrorApi}) => {
     return (
         <>
             <h1 className={style.header__text}>Search</h1>
-            <input
-                type="text"
+
+            <UiInput
                 value={inputSearchValue}
-                onChange={handleInputChange}
+                handleInputChange={handleInputChange}
                 placeholder="Input characters name"
+                classes={style.input__search}
             />
 
             <SearchPageInfo people={people}/>

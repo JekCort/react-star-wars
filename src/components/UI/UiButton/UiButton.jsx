@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import cn from 'classnames';
 import style from './UiButton.module.css';
-import './../index.css'
+import '../index.css'
 const UiButton = ({text, onClick, disabled, theme = 'dark', classes}) => {
     return (
         <button
