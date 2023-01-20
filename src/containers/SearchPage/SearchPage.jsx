@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import style from './SearchPage.module.css'
 import {getApiResource} from "../../utils/network";
 import {API_SEARCH} from "../../constants/api";
@@ -6,13 +6,15 @@ import {withErrorApi} from "../../hoc-helpers/withErrorApi";
 import PropTypes from "prop-types";
 import {getPeopleId, getPeopleImg} from "../../services/getPeopleData";
 import SearchPageInfo from "../../components/SearchPage/SearchPageInfo/SearchPageInfo";
+import {value} from "lodash/seq";
+import {debounce} from "lodash";
 
 const SearchPage = ({setErrorApi}) => {
     const [inputSearchValue, setInputSearchValue] = useState('')
     const [people, setPeople] = useState([])
 
     const getResponse = async param => {
-
+        console.log(param)
         const res = await getApiResource(API_SEARCH + param)
 
         if (res) {
@@ -36,10 +38,16 @@ const SearchPage = ({setErrorApi}) => {
         getResponse('')
     }, [])
 
+    const debounceGetResponse = useCallback(
+        debounce(value => getResponse(value), 300), []
+    )
+
+
     const handleInputChange = (event) => {
         const value = event.target.value
+
         setInputSearchValue(value)
-        getResponse(value)
+        debounceGetResponse(value)
     }
     return (
         <>
