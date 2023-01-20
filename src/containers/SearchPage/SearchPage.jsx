@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import style from './SearchPage.module.css'
 import {getApiResource} from "../../utils/network";
 import {API_SEARCH} from "../../constants/api";
 import {withErrorApi} from "../../hoc-helpers/withErrorApi";
 import PropTypes from "prop-types";
 import {getPeopleId, getPeopleImg} from "../../services/getPeopleData";
+import SearchPageInfo from "../../components/SearchPage/SearchPageInfo/SearchPageInfo";
 
 const SearchPage = ({setErrorApi}) => {
     const [inputSearchValue, setInputSearchValue] = useState('')
@@ -31,6 +32,10 @@ const SearchPage = ({setErrorApi}) => {
         }
     }
 
+    useEffect(()=>{
+        getResponse('')
+    }, [])
+
     const handleInputChange = (event) => {
         const value = event.target.value
         setInputSearchValue(value)
@@ -45,6 +50,8 @@ const SearchPage = ({setErrorApi}) => {
                 onChange={handleInputChange}
                 placeholder="Input characters name"
             />
+
+            <SearchPageInfo people={people}/>
         </>
     );
 };
