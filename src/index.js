@@ -10,12 +10,10 @@ import ThemeProvider from "./context/ThemeProvider";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <React.StrictMode>
         <Provider store={store}>
             <ThemeProvider>
                 <App/>
             </ThemeProvider>
         </Provider>
-    </React.StrictMode>
 );
 

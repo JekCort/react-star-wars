@@ -4,11 +4,13 @@ import PeopleList from "../../components/PeoplePage/PeopleList/PeopleList";
 import style from './FavoritesPage.module.css'
 
 const FavoritesPage = () => {
+
     const [people, setPeople] = useState([]);
 
     const storeData = useSelector(state => state.favoriteReducer);
 
     useEffect(()=>{
+
         const arr = Object.entries(storeData)
 
         if (arr.length) {

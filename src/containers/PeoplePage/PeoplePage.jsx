@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 
 import {withErrorApi} from "../../hoc-helpers/withErrorApi";
@@ -11,6 +11,7 @@ import PeopleNavigation from "../../components/PeoplePage/PeopleNavigation/Peopl
 
 
 const PeoplePage = ({setErrorApi}) => {
+    console.log('Render')
     const [people, setPeople] = useState(null)
     const [prevPage, setPrevPage] = useState(null)
     const [nextPage, setNextPage] = useState(null)
@@ -20,33 +21,36 @@ const PeoplePage = ({setErrorApi}) => {
     const queryPage = query.get('page');
 
 
-    const getResource = async (url) => {
-        const res = await getApiResource(url);
-        if (res) {
-            const peopleList = res.results.map(({name, url}) => {
-                const id = getPeopleId(url);
-                const img = getPeopleImg(id)
+    const getResource = useCallback(
+        async (url) => {
+            const res = await getApiResource(url);
+            if (res) {
+                const peopleList = res.results.map(({name, url}) => {
+                    const id = getPeopleId(url);
+                    const img = getPeopleImg(id)
 
-                return {
-                    id,
-                    name,
-                    img
-                }
-            })
+                    return {
+                        id,
+                        name,
+                        img
+                    }
+                })
 
-            setPeople(peopleList);
-            setPrevPage(res.previous);
-            setNextPage(res.next);
-            setCounterPage(getPeoplePageId(url))
-            setErrorApi(false)
-        } else {
-            setErrorApi(true)
-        }
-    };
+                setPeople(peopleList);
+                setPrevPage(res.previous);
+                setNextPage(res.next);
+                setCounterPage(getPeoplePageId(url))
+                setErrorApi(false)
+            } else {
+                setErrorApi(true)
+            }
+        }, [setErrorApi]
+    )
+
 
 
     useEffect(() => {
-        getResource(API_PEOPLE + queryPage)
+      void  getResource(API_PEOPLE + queryPage)
     }, [getResource, queryPage]);
 
     return (

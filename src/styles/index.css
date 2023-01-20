@@ -1,3 +1,7 @@
+*, *:after, *:before {
+    box-sizing: border-box;
+}
+
 :root {
     --color-white: #fff;
     --color-black: #000;
@@ -79,6 +83,27 @@ img {
     transition: color var(--transition);
 }
 
-*, *:after, *:before {
-    box-sizing: border-box;
+
+/* SCROLL */
+html {
+    scrollbar-color: rgb(37, 56, 97) rgb(0, 0, 0, .7);
+    scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(37, 56, 97);
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgb(0, 0, 0, .7);
+}
+
+::-webkit-scrollbar-corner {
+    background-color: rgb(0, 0, 0, .7);
 }
