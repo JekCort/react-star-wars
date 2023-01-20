@@ -9,6 +9,7 @@ import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import style from './App.module.css'
 import PersonPage from "../PersonPage/PersonPage";
 import FavoritesPage from "../FavoritesPage/FavoritesPage";
+import SearchPage from "../SearchPage/SearchPage";
 
 const App = () => {
     return (
@@ -21,6 +22,7 @@ const App = () => {
                         <Route path="/people"element={<PeoplePage/>}/>
                         <Route path="/people/:id" element={<PersonPage/>}/>
                         <Route path="/favorites" element={<FavoritesPage/>}/>
+                        <Route path="/search" element={<SearchPage/>}/>
                         <Route path="/not-found" element={<NotFoundPage/>}/>
                         <Route path="*" exact='true' element={<NotFoundPage/>}/>
                     </Routes>
